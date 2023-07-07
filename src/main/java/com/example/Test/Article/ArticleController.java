@@ -14,9 +14,12 @@ import java.util.List;
 @RequestMapping("/article")
 public class ArticleController {
 
+    private final ArticleService articleService;
+
     @GetMapping("/list")
     public String List(Model model){
-
+        List<Article> articleList = this.articleService.getList();
+        model.addAttribute("articleList",articleList);
 
         return "article_list";
     }
@@ -24,6 +27,7 @@ public class ArticleController {
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model){
         return "article_detail";
+
     }
 
 
