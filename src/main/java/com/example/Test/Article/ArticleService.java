@@ -19,10 +19,10 @@ public class ArticleService {
         return this.articleRepository.findAll();
     }
 
-//    public Article getArticle(Integer id) {
-//        Optional<Article> article = this.articleRepository.findById(id);
-//
-//    }
+    public Article getArticle(Integer id) {
+        Optional<Article> article = this.articleRepository.findById(id);
+        return article.get();
+    }
 
     public void create(String subject, String content){
         Article a = new Article();

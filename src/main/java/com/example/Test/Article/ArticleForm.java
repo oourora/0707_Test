@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class ArticleForm {
 
-    private String subject;
+    private String Subject;
 
-    private String content;
+    private String Content;
 
 }

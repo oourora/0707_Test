@@ -17,13 +17,13 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
-    private String Subject;
+    @Column(length = 200)
+    private String subject;
 
-    @Column
-    private String Content;
+    @Column(columnDefinition = "TEXT")
+    private String content;
 
     @CreatedDate
-    private LocalDateTime CreateDate;
+    private LocalDateTime createDate;
 
 }
