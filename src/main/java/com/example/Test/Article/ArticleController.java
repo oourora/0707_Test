@@ -62,6 +62,7 @@ public class ArticleController {
 
         return String.format("redirect:/article/detail/%s",article.getId());
     }
+
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id) {
         Article article = this.articleService.getArticle(id);
