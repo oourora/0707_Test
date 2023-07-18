@@ -31,4 +31,14 @@ public class ArticleService {
         a.setCreateDate(LocalDateTime.now());
         this.articleRepository.save(a);
     }
+    public void modify(Article a, String subject, String content){
+        a.setSubject(subject);
+        a.setContent(content);
+
+        this.articleRepository.save(a);
+    }
+
+    public void delete(Article article){
+        this.articleRepository.delete(article);
+    }
 }
