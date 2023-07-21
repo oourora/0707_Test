@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="kor">
+<html layout:decorate="~{layout}" lang="kor">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
     <title>article_list</title>
 </head>
 <body>
-<div class="container my-3">
+<div layout:fragment="content" class="container my-3">
     <table class="table">
         <thead class="table-blue">
         <tr>
@@ -17,12 +17,13 @@
         </thead>
         <tbody>
         <tr th:each="article, loop : ${articleList}">
-            <td th:text="${loop.count}"></td>
+            <td th:text="${loop.index}"></td>
             <td>
                 <a th:href="@{|/article/detail/${article.id}|}" th:text="${article.subject}"></a>
             </td>
             <td>
-                <a th:href="@{|/article/detail/${article.createDate}|}" th:text="${#temporals.format(article.createDate, 'yyyy-MM-dd HH:mm')}"></a>
+                <a th:href="@{|/article/detail/${article.createDate}|}"
+                   th:text="${#temporals.format(article.createDate, 'yyyy-MM-dd HH:mm')}"></a>
             </td>
         </tr>
         </tbody>

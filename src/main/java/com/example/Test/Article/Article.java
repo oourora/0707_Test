@@ -25,4 +25,5 @@ public class Article {
     @CreatedDate
     private LocalDateTime createDate;
 
+
 }

@@ -18,7 +18,13 @@ public class ArticleController {
 
     @GetMapping("/list")
     public String List(Model model) {
+
+        System.out.println("들어옴");
         List<Article> articleList = this.articleService.getList();
+
+        System.out.println(articleList.size());
+
+
         model.addAttribute("articleList", articleList);
 
         return "article_list";

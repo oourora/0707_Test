@@ -21,6 +21,7 @@ public class ArticleService {
 
     public Article getArticle(Integer id) {
         Optional<Article> article = this.articleRepository.findById(id);
+
         return article.get();
     }
 

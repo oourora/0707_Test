@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
 @SpringBootApplication
 public class Application {
 
@@ -14,9 +13,6 @@ public class Application {
 
 
 	}
-	@GetMapping("/")
-	public String root() {
-		return "redirect:/article/list";
-	}
+
 
 }
