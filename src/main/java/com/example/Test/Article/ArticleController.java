@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.data.domain.Page;
+
 
 @RequiredArgsConstructor
 @Controller
@@ -17,15 +20,11 @@ public class ArticleController {
     private final ArticleService articleService;
 
     @GetMapping("/list")
-    public String List(Model model) {
-
-        System.out.println("들어옴");
-        List<Article> articleList = this.articleService.getList();
-
-        System.out.println(articleList.size());
-
-
-        model.addAttribute("articleList", articleList);
+    public String List(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
+    @RequestParam(value = "kw", defaultValue = "") String kw) {
+        Page<Article> paging = this.articleService.getList(page, kw);
+        model.addAttribute("paging", paging);
+        model.addAttribute("kw", kw);
 
         return "article_list";
     }

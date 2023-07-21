@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,10 +8,13 @@
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
     <title>아티클 게시판 만들기 </title>
 </head>
-<body>
 
+<body>
+<!--네비바 -->
 <nav th:replace="~{navbar :: navbarFragment}"></nav>
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
 <th:block layout:fragment="content"></th:block>
 
 </body>
+
 </html>
