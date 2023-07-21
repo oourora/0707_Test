@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html layout:decorate="~{layout}" lang="kor">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
-    <title>article_list</title>
-</head>
-<body>
+<html layout:decorate="~{layout}">
+
 <div layout:fragment="content" class="container my-3">
     <table class="table">
         <thead class="table-blue">
@@ -30,5 +24,4 @@
     </table>
     <a th:href="@{/article/create}" class="btn btn-primary">등록 버튼</a>
 </div>
-</body>
 </html>
