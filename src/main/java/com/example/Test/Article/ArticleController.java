@@ -1,4 +1,4 @@
-package com.example.Test.Article;
+package com.example.Test.article;
 
 import com.example.Test.member.Member;
 import com.example.Test.member.MemberService;
@@ -40,6 +40,7 @@ public class ArticleController {
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id, ArticleForm articleForm) {
         Article article = this.articleService.getArticle(id);
+        articleService.viewCount(article);
         model.addAttribute("article", article);
         return "article_detail";
 
@@ -58,7 +59,7 @@ public class ArticleController {
             return "article_form";
         }
         Member member = this.memberService.getUser(principal.getName());
-        this.articleService.create(articleForm.getSubject(), articleForm.getContent(), member);
+        this.articleService.create(articleForm.getSubject(), articleForm.getContent(), member, articleForm.getPinned());
         return "redirect:/article/list";
     }
 
@@ -70,21 +71,10 @@ public class ArticleController {
         }
         articleForm.setSubject(article.getSubject());
         articleForm.setContent(article.getContent());
+        articleForm.setPinned(article.getPinned());
         return "article_form";
 
     }
-//
-//    @PostMapping("/modify/{id}")
-//    public String modify(Model model, @PathVariable("id") Integer id, ArticleForm articleForm, BindingResult bindingResult) {
-//        Article article = this.articleService.getArticle(id);
-//
-//        if (bindingResult.hasErrors()) {
-//            return "article_form";
-//        }
-//        this.articleService.modify(article, articleForm.getSubject(), articleForm.getContent());
-//
-//        return String.format("redirect:/article/detail/%s", article.getId());
-//    }
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{id}")
@@ -97,7 +87,7 @@ public class ArticleController {
         if (!article.getAuthor().getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다");
         }
-        this.articleService.modify(article, articleForm.getSubject(), articleForm.getContent());
+        this.articleService.modify(article, articleForm.getSubject(), articleForm.getContent(),articleForm.getPinned());
         return String.format("redirect:/article/detail/%s", id);
     }
 
@@ -111,6 +101,14 @@ public class ArticleController {
         this.articleService.delete(article);
         return "redirect:/";
 
+    }
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/vote/{id}")
+    public String Vote(Principal principal, @PathVariable("id") Integer id){
+        Article article = this.articleService.getArticle(id);
+        Member member = this.memberService.getUser(principal.getName());
+        this.articleService.vote(article,member);
+        return String.format("redirect:/article/detail/%s", id);
     }
 
 

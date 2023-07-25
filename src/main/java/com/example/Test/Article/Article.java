@@ -1,4 +1,4 @@
-package com.example.Test.Article;
+package com.example.Test.article;
 
 import com.example.Test.member.Member;
 import jakarta.persistence.*;
@@ -34,4 +34,12 @@ public class Article {
 
     @ManyToMany
     Set<Member> voter;
+
+    @Column
+    private Integer viewCount = 0;
+
+    @Column
+    private Boolean pinned = false;
+
+
 }

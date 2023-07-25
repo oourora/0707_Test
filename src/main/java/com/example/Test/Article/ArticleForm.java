@@ -1,4 +1,4 @@
-package com.example.Test.Article;
+package com.example.Test.article;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
@@ -13,5 +13,8 @@ public class ArticleForm {
 
     @NotEmpty(message = "내용은 필수입니다")
     private String Content;
+
+    private Boolean pinned = false;
+
 
 }

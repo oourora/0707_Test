@@ -1,11 +1,8 @@
-
 <html layout:decorate="~{layout}">
 
 <div layout:fragment="content" class="container my-3">
     <div class="my-3 border-bottom">
-        <div>
-            <h4>회원가입</h4>
-        </div>
+        <h4 class="point-color"> SIGN-UP </h4>
     </div>
     <form th:action="@{/member/signup}" th:object="${memberForm}" method="post">
         <div th:replace="~{form_errors :: formErrorsFragment}"></div>

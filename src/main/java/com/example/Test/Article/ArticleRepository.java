@@ -1,4 +1,4 @@
-package com.example.Test.Article;
+package com.example.Test.article;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.domain.Page;
@@ -16,6 +16,9 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
     Page<Article> findAll(Pageable pageable);
 //    Page<Article> findBySubject(String kw);
     Page<Article> findAll(Specification<Article> spec, Pageable pageable);
+
+    Page<Article> findByOrderByPinnedDescCreateDateDesc(Pageable pageable);
+
 
 
 }

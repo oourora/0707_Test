@@ -1,15 +1,55 @@
+<!doctype html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <style>
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+      </style>
 
-<nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">Spring Boot 게시판 만들기</a>
+    <title>navbar</title>
+</head>
+<body>
 
-        <div id="navbarSupportedContent">
-            <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/member/signin}">로그인</a>
-            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/member/signout}">로그아웃</a>
+<nav th:fragment="navbarFragment"
+     class="navbar d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+
+    <div class="container">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <picture>
+                <img src="/img/FuFu.gif" class="img-fluid img-thumbnail bi me-2" width="70" height="60" role="img" aria-label="FuFu">
+            </picture>
+
+
+        </a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
+<!--            <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>-->
+<!--            <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>-->
+<!--            <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>-->
+<!--            <li><a href="#" class="nav-link px-2 link-dark">About</a></li>-->
+        </ul>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+            <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        </form>
+
+        <div class="col-md-3 text-end">
+            <a sec:authorize="isAnonymous()" th:href="@{/member/signin}"
+                    class="btn btn-outline-primary me-2">Sign-in
+            </a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/member/signout}"
+                    class="btn btn-outline-primary me-2">Sign-out
+            </a>
+            <a th:href="@{/member/signup}" class="btn btn-primary">Sign-up</a>
         </div>
-        <div class="nav-item">
-            <a class="nav-link" th:href="@{/member/signup}">회원가입</a>
-        </div>
-    </div>
+
     </div>
 </nav>
+</body>
+</html>

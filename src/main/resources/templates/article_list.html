@@ -1,6 +1,8 @@
 <html layout:decorate="~{layout}">
 
 <div layout:fragment="content" class="container my-3">
+    <h4 class=" point-color my-3 border-bottom pb-2"> Board </h4>
+
     <table class="table">
         <thead class="table-blue">
         <tr class="text-center">
@@ -8,6 +10,7 @@
             <th style="width:50%">제목</th>
             <th>글쓴이</th>
             <th>작성일시</th>
+            <th>조회수</th>
         </tr>
         </thead>
         <tbody>
@@ -21,6 +24,9 @@
             <td>
                 <a th:href="@{|/article/detail/${article.createDate}|}"
                    th:text="${#temporals.format(article.createDate, 'yyyy-MM-dd HH:mm')}"></a>
+            </td>
+            <td>
+                <span th:text="${article.viewCount}"></span>
             </td>
         </tr>
         </tbody>
@@ -77,6 +83,11 @@ btn_search.addEventListener('click', function() {
     document.getElementById('page').value = 0;
     document.getElementById('searchForm').submit();
 });
+
+
+
+
+
 
 
 

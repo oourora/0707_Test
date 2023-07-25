@@ -1,13 +1,15 @@
 <html layout:decorate="~{layout}">
 
 <div layout:fragment="content" class="container my-3">
+    <h4>
+        <a th:href="@{/article/list}" class=" point-color btn btn-primary">목록</a>
+    </h4>
 
-    <a th:href="@{/article/list}" class="btn btn-primary">목록</a>
 
     <h2 class="border-bottom py-2" th:text="${article.subject}"></h2>
     <div class="card my-3">
         <div class="card-body">
-            <div class="card-text" style="white-space: pre-line;" th:text="${article.content}"></div>
+            <div class="card-text"  style="white-space: pre-line;" th:utext="${@commonUtil.markdown(article.content)}"></div>
             <div class="d-flex justify-content-end">
                 <div th:if="${article.modifyDate != null}" class="badge bg-light text-dark p-2 text-start mx-3">
                     <div class="mb-2">
@@ -24,6 +26,11 @@
         </div>
     </div>
     <div class="my-3">
+        <a href="javascript:void(0);" class="recommend btn btn-sm btn-outline-secondary"
+           th:data-uri="@{|/article/vote/${article.id}|}">
+            추천
+            <span class="badge rounded-pill bg-success" th:text="${#lists.size(article.voter)}"></span>
+        </a>
         <a th:href="@{|/article/modify/${article.id}|}" class="btn btn-sm btn-outline-secondary"
            sec:authorize="isAuthenticated()"
            th:if="${article.author != null and #authentication.getPrincipal().getUsername() == article.author.username}"
@@ -38,6 +45,14 @@ const delete_elements = document.getElementsByClassName("delete");
 Array.from(delete_elements).forEach(function(element) {
     element.addEventListener('click', function() {
         if(confirm("정말로 삭제하시겠습니까?")) {
+            location.href = this.dataset.uri;
+        };
+    });
+});
+const recommend_elements = document.getElementsByClassName("recommend");
+Array.from(recommend_elements).forEach(function(element) {
+    element.addEventListener('click', function() {
+        if(confirm("정말 좋은 내용인가요? 그렇다면 추천!! bb")) {
             location.href = this.dataset.uri;
         };
     });

@@ -1,6 +1,6 @@
 package com.example.Test.member;
 
-import com.example.Test.Article.DataNotFoundException;
+import com.example.Test.article.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
