@@ -1,10 +1,11 @@
 package com.example.Test.member;
 
+import com.example.Test.Article.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Optional;
 
 
 @Service
@@ -23,6 +24,13 @@ public class MemberService {
         this.memberRepository.save(member);
         return member;
     }
-
+    public Member getUser(String username){
+        Optional<Member> member = this.memberRepository.findByUsername(username);
+        if(member.isPresent()){
+            return member.get();
+        }else {
+            throw new DataNotFoundException("사용자를 찾을 수 없음");
+        }
+    }
 
 }

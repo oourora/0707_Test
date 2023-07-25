@@ -39,16 +39,18 @@ public class ArticleService {
         return article.get();
     }
 
-    public void create(String subject, String content){
+    public void create(String subject, String content, Member member){
         Article a = new Article();
         a.setSubject(subject);
         a.setContent(content);
         a.setCreateDate(LocalDateTime.now());
+        a.setAuthor(member);
         this.articleRepository.save(a);
     }
     public void modify(Article a, String subject, String content){
         a.setSubject(subject);
         a.setContent(content);
+        a.setModifyDate(LocalDateTime.now());
 
         this.articleRepository.save(a);
     }
