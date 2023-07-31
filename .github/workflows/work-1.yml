@@ -99,4 +99,3 @@ jobs:
         run: |
           docker stop sbb-1 && docker rm sbb-1 && docker rmi ghcr.io/${{ github.actor }}/sbb-1:latest
           docker run -d -p 80:8080 --name sbb-1 --restart always ghcr.io/${{ github.actor }}/sbb-1:latest
-1
